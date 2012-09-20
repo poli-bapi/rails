@@ -1,0 +1,65 @@
+
+<form method="POST" action="/wsdl/merchant">
+	Date:<input type="text" name="day" value="<%=@date%>" />
+<select name='status[]' multiple="multiple">
+<option value=''></option><option value='Initiated'>Initiated</option><option value='FinancialInstitutionSelected'>FinancialInstitutionSelected</option><option value='EULAAccepted'>EULAAccepted</option><option value='InProcess'>InProcess</option><option value='Completed'>Completed</option><option value='Unknown'>Unknown</option><option value='Failed'>Failed</option><option value='ReceiptUnverified'>ReceiptUnverified</option><option value='Cancelled'>Cancelled</option><option value='TimedOut'>TimedOut</option></select>
+<input type="submit" name="submit" value="submit"/><input type="submit" name="csv" value="CSV Report"/>
+</form>
+
+<% if @transactions.nil? %>
+no transaction
+<% else %>
+<table>
+<tr>
+<th>TransactionRefNo</th>
+<th>MerchantReference</th>
+
+<th>AmountPaid</th>
+<th>BankReceiptNo</th>
+<th>CurrencyCode</th>
+<th>CurrencyName</th>
+<th>EndDateTime</th>
+<th>EstablishedDateTime</th>
+<th>FinancialInstitutionCode</th>
+<th>FinancialInstitutionName</th>
+<th>MerchantCode</th>
+<th>MerchantCommonName</th>
+<th>MerchantDefinedData</th>
+<th>PayerAcctNumber</th>
+<th>PayerAcctSortCode</th>
+<th>PayerAcctSuffix</th>
+<th>PaymentAmount</th>
+<th>TransactionStatus</th>
+<th>TransactionStatusCode</th>
+</tr>
+
+<% @transactions.each do |transaction| %>
+<td><%= link_to transaction.transactionRefNo,"transaction?tref="+transaction.transactionRefNo %></td>
+<td><%= link_to transaction.merchantReference,"transaction?orderno="+transaction.merchantReference %></td>
+
+<tr><td><%= transaction.amountPaid %></td>
+<td><%= transaction.bankReceiptNo %></td>
+<td><%= transaction.currencyCode %></td>
+<td><%= transaction.currencyName %></td>
+<td><%= transaction.endDateTime %></td>
+<td><%= transaction.establishedDateTime %></td>
+<td><%= transaction.financialInstitutionCode %></td>
+<td><%= transaction.financialInstitutionName %></td>
+<td><%= transaction.merchantCode %></td>
+<td><%= transaction.merchantCommonName %></td>
+<td><%= transaction.merchantDefinedData %></td>
+<td><%= transaction.payerAcctNumber %></td>
+<td><%= transaction.payerAcctSortCode %></td>
+<td><%= transaction.payerAcctSuffix %></td>
+<td><%= transaction.paymentAmount %></td>
+<td><%= transaction.transactionStatus %></td>
+<td><%= transaction.transactionStatusCode %></td>
+</tr>
+
+
+<% end %>
+</table>
+
+
+
+<% end %>

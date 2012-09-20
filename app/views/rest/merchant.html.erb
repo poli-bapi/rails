@@ -1,0 +1,64 @@
+Merchant Page|Rest<br/>
+<form method="POST" action="/rest/merchant">
+	Date:<input type="text" name="day" value="<%=@date%>" />
+<select name='status[]' multiple="multiple">
+<option value=''></option><option value='Initiated'>Initiated</option><option value='FinancialInstitutionSelected'>FinancialInstitutionSelected</option><option value='EULAAccepted'>EULAAccepted</option><option value='InProcess'>InProcess</option><option value='Completed'>Completed</option><option value='Unknown'>Unknown</option><option value='Failed'>Failed</option><option value='ReceiptUnverified'>ReceiptUnverified</option><option value='Cancelled'>Cancelled</option><option value='TimedOut'>TimedOut</option></select>
+<input type="submit" name="submit" value="submit"/><input type="submit" name="csv" value="CSV Report"/>
+</form>
+<% p YAML::dump(request.params)%>
+<% if @transactions.nil? %>
+no transaction
+<% else %>
+<table>
+<tr>
+<th>TransactionRefNo</th>
+<th>MerchantReference</th>
+
+<th>AmountPaid</th>
+<th>BankReceiptNo</th>
+<th>CurrencyCode</th>
+<th>CurrencyName</th>
+<th>EndDateTime</th>
+<th>EstablishedDateTime</th>
+<th>FinancialInstitutionCode</th>
+<th>FinancialInstitutionName</th>
+<th>MerchantCode</th>
+<th>MerchantCommonName</th>
+<th>MerchantDefinedData</th>
+<th>PayerAcctNumber</th>
+<th>PayerAcctSortCode</th>
+<th>PayerAcctSuffix</th>
+<th>PaymentAmount</th>
+<th>TransactionStatus</th>
+<th>TransactionStatusCode</th>
+</tr>
+<% @transactions.each do |transaction| %>
+<td><%= link_to transaction['TransactionRefNo'],"transaction?tref="+transaction['TransactionRefNo'] %></td>
+<td><%= link_to transaction['MerchantReference'],"transaction?orderno="+transaction['MerchantReference'] %></td>
+
+<tr><td><%= transaction['AmountPaid'] %></td>
+<td><%= transaction['BankReceiptNo'] %></td>
+<td><%= transaction['CurrencyCode'] %></td>
+<td><%= transaction['CurrencyName'] %></td>
+<td><%= transaction['EndDateTime'] %></td>
+<td><%= transaction['EstablishedDateTime'] %></td>
+<td><%= transaction['FinancialInstitutionCode'] %></td>
+<td><%= transaction['FinancialInstitutionName'] %></td>
+<td><%= transaction['MerchantCode'] %></td>
+<td><%= transaction['MerchantCommonName'] %></td>
+<td><%= transaction['MerchantDefinedData'] %></td>
+<td><%= transaction['PayerAcctNumber'] %></td>
+<td><%= transaction['PayerAcctSortCode'] %></td>
+<td><%= transaction['PayerAcctSuffix'] %></td>
+<td><%= transaction['PaymentAmount'] %></td>
+<td><%= transaction['TransactionStatus'] %></td>
+<td><%= transaction['TransactionStatusCode'] %></td>
+</tr>
+
+
+<% end %>
+</table>
+
+
+
+<% end %>

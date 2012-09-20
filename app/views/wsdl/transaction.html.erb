@@ -1,0 +1,38 @@
+<h2>Detailed Transaction</h2>
+
+<table>
+<tr><th>AmountPaid</th><td> <%=  @transaction.amountPaid %></td></tr>
+<tr><th>BankReceiptNo</th><td> <%=  @transaction.bankReceiptNo %></td></tr>
+<tr><th>CurrencyCode</th><td> <%=  @transaction.currencyCode %></td></tr>
+<tr><th>CurrencyName</th><td> <%=  @transaction.currencyName %></td></tr>
+<tr><th>EndDateTime</th><td> <%=  @transaction.endDateTime %></td></tr>
+<tr><th>EstablishedDateTime</th><td> <%=  @transaction.establishedDateTime %></td></tr>
+<tr><th>FailureReason</th><td> <%=  @transaction.failureReason %></td></tr>
+<tr><th>FinancialInstitutionCode</th><td> <%=  @transaction.financialInstitutionCode %></td></tr>
+<tr><th>FinancialInstitutionName</th><td> <%=  @transaction.financialInstitutionName %></td></tr>
+<tr><th>MerchantCode</th><td> <%=  @transaction.merchantCode %></td></tr>
+<tr><th>MerchantCommonName</th><td> <%=  @transaction.merchantCommonName %></td></tr>
+<tr><th>MerchantDefinedData</th><td> <%=  @transaction.merchantDefinedData %></td></tr>
+<tr><th>MerchantReference</th><td> <%=  @transaction.merchantReference %></td></tr>
+<tr><th>PayerAcctNumber</th><td> <%=  @transaction.payerAcctNumber %></td></tr>
+<tr><th>PayerAcctSortCode</th><td> <%=  @transaction.payerAcctSortCode %></td></tr>
+<tr><th>PayerAcctSuffix</th><td> <%=  @transaction.payerAcctSuffix %></td></tr>
+<tr><th>PaymentAmount</th><td> <%=  @transaction.paymentAmount %></td></tr>
+<tr><th>TransactionRefNo</th><td> <%=  @transaction.transactionRefNo %></td></tr>
+<tr><th>TransactionStatus</th><td> <%=  @transaction.transactionStatus %></td></tr>
+<tr><th>TransactionStatusCode</th><td> <%=  @transaction.transactionStatusCode %></td></tr>
+<tr><th>UserIPAddress</th><td> <%=  @transaction.userIPAddress %></td></tr>
+<tr><th>UserPlatform</th><td> <%=  @transaction.userPlatform %></td></tr>
+</table>
+<table>
+<caption>Transaction Step List</caption>
+<thead>
+<tr><th>Step Name</th><th>Created Date</th></tr>
+</thead>
+<tbody>
+<% @steps.each do |step| %>
+ <tr><td><%=step.transactionStepTypeName%></td><td><%=step.createdDateTime %></td></tr>
+<% end %>
+
+</tbody>
+</table>
