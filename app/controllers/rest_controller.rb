@@ -96,7 +96,7 @@ XML
     $input.CurrencyAmount=amt
     $input.CurrencyCode=currencycode
     $input.MerchantData=request.session_options[:id]
-    $input.SelectedFICode=params['FinancialInstutionCode']
+    $input.SelectedFICode=params['FinancialInstitutionCode']
     $input.MerchantRef= session[:order]
     
     $input.NotificationURL="http://"+request.host_with_port+"/rest/notify"

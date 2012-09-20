@@ -90,8 +90,8 @@ tr.currencyAmount=amt
 
 tr.merchantCode=config.wsdl_merchantcode
 tr.merchantData=request.session_options[:id]
-if params['FinancialInstutionCode'].present?
-tr.selectedFICode=params['FinancialInstutionCode']
+if params['FinancialInstitutionCode'].present?
+tr.selectedFICode=params['FinancialInstitutionCode']
 end
 tr.merchantRef= session['order'];
 
