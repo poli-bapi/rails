@@ -1,0 +1,130 @@
+
+
+
+Started POST "/wsdl/notify" for 27.32.173.172 at 2012-09-20 09:14:40 +0530
+Processing by WsdlController#notify as HTML
+  Parameters: {"Token"=>"vZSq4FrFwyI49/ICdqyTk05h2NG0qvH/"}
+  [1m[35mTransactions Load (0.6ms)[0m  SELECT `transactions`.* FROM `transactions` WHERE (refno='996105314169' and orderno='1348110451') LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  update transactions set status=1 where orderno=1348110451 and refno=996105314169
+  [1m[36m (39.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO `receipts` (`AmountPaid`, `BankReceipt`, `BankReceiptDateTime`, `CountryCode`, `CountryName`, `CurrencyCode`, `CurrencyName`, `EndDateTime`, `ErrorCode`, `ErrorMessage`, `EstablishedDateTime`, `FinancialInstitutionCode`, `FinancialInstitutionCountryCode`, `FinancialInstitutionName`, `MerchantAcctName`, `MerchantAcctNumber`, `MerchantAcctSortCode`, `MerchantAcctSuffix`, `MerchantDefinedData`, `MerchantEstablishedDateTime`, `MerchantReference`, `PaymentAmount`, `StartDateTime`, `TransactionID`, `TransactionRefNo`) VALUES (3.0, '98742364-806', '2012-09-20 13:44:29', 'AU', 'Australia', 'AUD', 'Australian Dollar', '2012-09-20 13:44:30', NULL, NULL, '2012-09-20 13:43:20', 'iBankAU01', 'AU', 'iBank AU 01', 'PMobile Australia', '11248877', '123456', '', '3c93992b5c036fe93ca45dd865e92188', '2012-09-20 03:43:17', '1348110451', 3.0, '2012-09-20 13:43:20', '69901f8b-3261-46f6-8168-bc4edd64f927', '996105314169')[0m
+  [1m[35m (34.6ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 4093ms (Views: 1.3ms | ActiveRecord: 79.9ms)
+
+
+Started GET "/wsdl/receipt?token=vZSq4FrFwyI49%2fICdqyTk05h2NG0qvH%2f" for 192.168.1.7 at 2012-09-20 09:14:44 +0530
+Processing by WsdlController#receipt as HTML
+  Parameters: {"token"=>"vZSq4FrFwyI49/ICdqyTk05h2NG0qvH/"}
+  [1m[36mReceipts Load (0.3ms)[0m  [1mSELECT `receipts`.* FROM `receipts` WHERE (TransactionRefNo = '996105314169' and MerchantReference =1348110451 ) LIMIT 1[0m
+  Rendered wsdl/receipt.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 19ms (Views: 16.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 192.168.1.7 at 2012-09-20 09:14:44 +0530
+Served asset /application.css - 304 Not Modified (54ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.1.7 at 2012-09-20 09:14:44 +0530
+Served asset /jquery.js - 304 Not Modified (17ms)
+
+
+Started GET "/assets/rest.css?body=1" for 192.168.1.7 at 2012-09-20 09:14:45 +0530
+Served asset /rest.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/rest.js?body=1" for 192.168.1.7 at 2012-09-20 09:14:45 +0530
+Served asset /rest.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/wsdl.css?body=1" for 192.168.1.7 at 2012-09-20 09:14:45 +0530
+Served asset /wsdl.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.1.7 at 2012-09-20 09:14:45 +0530
+Served asset /jquery_ujs.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/wsdl.js?body=1" for 192.168.1.7 at 2012-09-20 09:14:45 +0530
+Served asset /wsdl.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 192.168.1.7 at 2012-09-20 09:14:45 +0530
+Served asset /application.js - 304 Not Modified (4ms)
+
+
+Started GET "/rest/" for 192.168.1.7 at 2012-09-20 09:15:05 +0530
+Processing by RestController#index as HTML
+  Rendered rest/index.html.erb (0.8ms)
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/rest/financialinstitutes" for 192.168.1.7 at 2012-09-20 09:15:05 +0530
+Processing by RestController#financialinstitutes as HTML
+Completed 200 OK in 3338ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/rest/initiatetransaction" for 192.168.1.7 at 2012-09-20 09:15:22 +0530
+Processing by RestController#initiatetransaction as HTML
+  Parameters: {"FinancialInstitutionCode"=>"iBank AU 01", "CurrencyCode"=>"AUD", "PaymentAmount"=>"6", "payment-method"=>"poli", "PayWithPOLi1.x"=>"27", "PayWithPOLi1.y"=>"8"}
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `transactions` (`amount`, `currency`, `orderno`, `refno`, `status`, `token`) VALUES (6.0, 'AUD', 1348112705, '996105314170', 0, 'NWGcEcYzcBAeUvsGOzeGrRAmr3p4Pvz1')[0m
+  [1m[35m (37.2ms)[0m  COMMIT
+Redirected to https://transaction.apac-test.paywithpoli.com/Default.aspx?token=NWGcEcYzcBAeUvsGOzeGrRAmr3p4Pvz1
+Completed 302 Found in 3281ms (ActiveRecord: 37.8ms)
+
+
+Started POST "/rest/notify" for 27.32.173.172 at 2012-09-20 09:16:20 +0530
+Processing by RestController#notify as HTML
+  Parameters: {"Token"=>"NWGcEcYzcBAeUvsGOzeGrRAmr3p4Pvz1"}
+  [1m[36mTransactions Load (0.7ms)[0m  [1mSELECT `transactions`.* FROM `transactions` WHERE (refno='996105314170' and orderno='1348112705') LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mupdate transactions set status=0 where orderno=1348112705 and refno=996105314170[0m
+  [1m[35m (41.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `receipts` (`AmountPaid`, `BankReceipt`, `BankReceiptDateTime`, `CountryCode`, `CountryName`, `CurrencyCode`, `CurrencyName`, `EndDateTime`, `ErrorCode`, `ErrorMessage`, `EstablishedDateTime`, `FinancialInstitutionCode`, `FinancialInstitutionCountryCode`, `FinancialInstitutionName`, `MerchantAcctName`, `MerchantAcctNumber`, `MerchantAcctSortCode`, `MerchantAcctSuffix`, `MerchantDefinedData`, `MerchantEstablishedDateTime`, `MerchantReference`, `PaymentAmount`, `StartDateTime`, `TransactionID`, `TransactionRefNo`) VALUES (6.0, '98742364-807', '2012-09-20 13:46:13', 'AU', 'Australia', 'AUD', 'Australian Dollar', '2012-09-20 13:46:13', '', '', '2012-09-20 13:45:24', 'iBankAU01', 'AU', 'iBank AU 01', 'PMobile Australia', '11248877', '123456', '', '3c93992b5c036fe93ca45dd865e92188', '2012-09-20 03:45:22', '1348112705', 6.0, '2012-09-20 13:45:24', '8cef92f1-92cf-4b20-a399-c4c491291cdd', '996105314170')
+  [1m[36m (26.2ms)[0m  [1mCOMMIT[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 5389ms (Views: 0.4ms | ActiveRecord: 69.5ms)
+
+
+Started GET "/rest/receipt?token=NWGcEcYzcBAeUvsGOzeGrRAmr3p4Pvz1" for 192.168.1.7 at 2012-09-20 09:16:26 +0530
+Processing by RestController#receipt as HTML
+  Parameters: {"token"=>"NWGcEcYzcBAeUvsGOzeGrRAmr3p4Pvz1"}
+  [1m[35mReceipts Load (0.7ms)[0m  SELECT `receipts`.* FROM `receipts` WHERE (TransactionRefNo = '996105314170' and MerchantReference =1348112705 ) LIMIT 1
+  Rendered rest/receipt.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 8ms (Views: 5.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 192.168.1.7 at 2012-09-20 09:16:26 +0530
+Served asset /application.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/rest.css?body=1" for 192.168.1.7 at 2012-09-20 09:16:26 +0530
+Served asset /rest.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.1.7 at 2012-09-20 09:16:26 +0530
+Served asset /jquery.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/wsdl.css?body=1" for 192.168.1.7 at 2012-09-20 09:16:26 +0530
+Served asset /wsdl.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rest.js?body=1" for 192.168.1.7 at 2012-09-20 09:16:26 +0530
+Served asset /rest.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.1.7 at 2012-09-20 09:16:26 +0530
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 192.168.1.7 at 2012-09-20 09:16:26 +0530
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/wsdl.js?body=1" for 192.168.1.7 at 2012-09-20 09:16:26 +0530
+Served asset /wsdl.js - 304 Not Modified (0ms)
